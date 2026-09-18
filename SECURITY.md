@@ -9,7 +9,7 @@
 
 ## Reporting a Vulnerability
 
-The `mcp-audit` project is committed to ensuring the security of the Model Context Protocol ecosystem. If you discover a vulnerability in `mcp-audit`, please report it responsibly.
+The `mcpaudit` project is committed to ensuring the security of the Model Context Protocol ecosystem. If you discover a vulnerability in `mcpaudit`, please report it responsibly.
 
 ### How to Report
 Please **DO NOT** create a public GitHub issue for security vulnerabilities.

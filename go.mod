@@ -1,4 +1,4 @@
-module mcp-audit
+module mcpaudit
 
 go 1.26.3
 

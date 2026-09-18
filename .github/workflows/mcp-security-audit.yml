@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  mcp-audit:
+  mcpaudit:
     name: Audit MCP Server
     runs-on: ubuntu-latest
     permissions:
@@ -22,12 +22,12 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install mcp-audit
-        run: go install github.com/mcp-audit/mcp-audit@latest
+      - name: Install mcpaudit
+        run: go install github.com/Morendais/mcp-audit@latest
 
       - name: Execute Dynamic Security Audit
         run: |
-          mcp-audit scan \
+          mcpaudit scan \
             --exec "node dist/index.js" \
             --sarif results.sarif \
             --fail-on critical

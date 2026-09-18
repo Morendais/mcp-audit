@@ -15,9 +15,9 @@ var (
 
 // RootCmd represents the base command when called without any subcommands.
 var RootCmd = &cobra.Command{
-	Use:   "mcp-audit",
-	Short: "mcp-audit: Developer security scanner and DAST fuzzer for Model Context Protocol (MCP) servers",
-	Long: `mcp-audit is a zero-config security auditing and dynamic verification CLI utility for MCP servers.
+	Use:   "mcpaudit",
+	Short: "mcpaudit: Developer security scanner and DAST fuzzer for Model Context Protocol (MCP) servers",
+	Long: `mcpaudit is a zero-config security auditing and dynamic verification CLI utility for MCP servers.
 When run without arguments, it automatically scans for local Claude Desktop, Cursor, and Windsurf
 configurations and presents an interactive express audit menu.
 

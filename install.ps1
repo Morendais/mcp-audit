@@ -1,10 +1,10 @@
-# mcp-audit installer for Windows PowerShell
+# mcpaudit installer for Windows PowerShell
 $ErrorActionPreference = 'Stop'
 
 $Repo = if ($env:GITHUB_REPOSITORY) { $env:GITHUB_REPOSITORY } else { "Morendais/mcp-audit" }
 $Version = "0.2.0"
 
-Write-Host "==> Installing mcp-audit v$Version for Windows..." -ForegroundColor Cyan
+Write-Host "==> Installing mcpaudit v$Version for Windows..." -ForegroundColor Cyan
 
 $Arch = if ([System.Environment]::Is64BitOperatingSystem) {
     if ($env:PROCESSOR_ARCHITECTURE -eq 'ARM64') { 'arm64' } else { 'amd64' }
@@ -13,14 +13,14 @@ $Arch = if ([System.Environment]::Is64BitOperatingSystem) {
     exit 1
 }
 
-$InstallDir = Join-Path $env:LOCALAPPDATA "Programs\mcp-audit"
+$InstallDir = Join-Path $env:LOCALAPPDATA "Programs\mcpaudit"
 if (!(Test-Path $InstallDir)) {
     New-Item -ItemType Directory -Path $InstallDir -Force | Out-Null
 }
 
-$TargetExe = Join-Path $InstallDir "mcp-audit.exe"
-$DownloadUrl = "https://github.com/$Repo/releases/download/v$Version/mcp-audit_windows_$Arch.zip"
-$ZipPath = Join-Path $env:TEMP "mcp-audit.zip"
+$TargetExe = Join-Path $InstallDir "mcpaudit.exe"
+$DownloadUrl = "https://github.com/$Repo/releases/download/v$Version/mcpaudit_windows_$Arch.zip"
+$ZipPath = Join-Path $env:TEMP "mcpaudit.zip"
 
 Write-Host "--> Downloading package from GitHub releases..." -ForegroundColor Gray
 try {
@@ -28,7 +28,7 @@ try {
     Expand-Archive -Path $ZipPath -DestinationPath $InstallDir -Force
     Remove-Item $ZipPath -Force -ErrorAction SilentlyContinue
 } catch {
-    Write-Host "[!] Note: Release v$Version binary download failed. If building from source: 'go build -o mcp-audit.exe .'" -ForegroundColor Yellow
+    Write-Host "[!] Note: Release v$Version binary download failed. If building from source: 'go build -o mcpaudit.exe .'" -ForegroundColor Yellow
 }
 
 # Update User PATH if needed
@@ -39,7 +39,7 @@ if ($UserPath -notlike "*$InstallDir*") {
     $env:Path += ";$InstallDir"
 }
 
-Write-Host "✔ Successfully configured mcp-audit in $InstallDir" -ForegroundColor Green
+Write-Host "✔ Successfully configured mcpaudit in $InstallDir" -ForegroundColor Green
 Write-Host ""
 Write-Host "Run zero-config audit:" -ForegroundColor White
-Write-Host "  mcp-audit" -ForegroundColor Cyan
+Write-Host "  mcpaudit" -ForegroundColor Cyan

@@ -1,23 +1,23 @@
-# MCP-Audit
+# mcpaudit
 
 Developer Security Scanner and Dynamic Application Security Testing (DAST) Fuzzer for Model Context Protocol (MCP) Servers.
 
 [![CI](https://github.com/Morendais/mcp-audit/actions/workflows/ci.yml/badge.svg)](https://github.com/Morendais/mcp-audit/actions)
 [![SARIF 2.1.0](https://img.shields.io/badge/SARIF-2.1.0-blue.svg)](https://docs.oasis-open.org/sarif/sarif/v2.1.0/sarif-v2.1.0.html)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![npm version](https://img.shields.io/npm/v/mcp-audit.svg)](https://www.npmjs.com/package/mcp-audit)
+[![npm version](https://img.shields.io/npm/v/mcpaudit.svg)](https://www.npmjs.com/package/mcpaudit)
 
 > **Important Notice & Disclaimer:**
-> `mcp-audit` is created strictly for developers, system administrators, and security researchers to audit and verify **their own** Model Context Protocol (MCP) servers or environments where they have explicit, written permission to test.
+> `mcpaudit` is created strictly for developers, system administrators, and security researchers to audit and verify **their own** Model Context Protocol (MCP) servers or environments where they have explicit, written permission to test.
 > The author and contributors disclaim any and all liability for misuse, abuse, unauthorized testing, or damages resulting from the use of this software. You are solely responsible for ensuring your testing activities comply with all applicable local, national, and international laws.
 
 ---
 
 ## Overview
 
-`mcp-audit` is a standalone, zero-config command-line security auditor designed specifically for the Model Context Protocol ecosystem. 
+`mcpaudit` is a standalone, zero-config command-line security auditor designed specifically for the Model Context Protocol ecosystem. 
 
-Rather than relying purely on static regex matching, `mcp-audit` initiates an actual JSON-RPC 2.0 handshake over stdio or SSE, discovers registered tools and their JSON schemas, and conducts non-destructive dynamic fuzzing to identify critical vulnerabilities before servers are connected to autonomous LLM agents (Claude Desktop, Cursor, Windsurf):
+Rather than relying purely on static regex matching, `mcpaudit` initiates an actual JSON-RPC 2.0 handshake over stdio or SSE, discovers registered tools and their JSON schemas, and conducts non-destructive dynamic fuzzing to identify critical vulnerabilities before servers are connected to autonomous LLM agents (Claude Desktop, Cursor, Windsurf):
 
 - **Path Traversal (CWE-22):** Unauthorized access to arbitrary files outside sandbox boundaries.
 - **OS Command Injection (CWE-78):** Unescaped shell argument execution.
@@ -31,14 +31,14 @@ Rather than relying purely on static regex matching, `mcp-audit` initiates an ac
 
 ### Option 1: Run instantly via npx (Zero-install)
 ```bash
-npx mcp-audit
+npx mcpaudit
 ```
 
 ### Option 2: Pre-built Binaries (GitHub Releases)
 Download standalone executable archives from [GitHub Releases](https://github.com/Morendais/mcp-audit/releases/latest):
-- **Windows:** Download `mcp-audit_windows_amd64.zip`, extract and run `mcp-audit.exe`.
-- **Linux:** Download `mcp-audit_linux_amd64.tar.gz`.
-- **macOS:** Download `mcp-audit_darwin_arm64.tar.gz` (Apple Silicon) or `mcp-audit_darwin_amd64.tar.gz` (Intel).
+- **Windows:** Download `mcpaudit_windows_amd64.zip`, extract and run `mcpaudit.exe`.
+- **Linux:** Download `mcpaudit_linux_amd64.tar.gz`.
+- **macOS:** Download `mcpaudit_darwin_arm64.tar.gz` (Apple Silicon) or `mcpaudit_darwin_amd64.tar.gz` (Intel).
 
 ### Option 3: Go Install
 ```bash
@@ -49,11 +49,11 @@ go install github.com/Morendais/mcp-audit@latest
 
 ## Zero-Config Interactive TUI
 
-When executed without arguments, `mcp-audit` skips generic help banners. It automatically inspects default configuration paths across **Claude Desktop, Cursor, and Windsurf** as well as local workspace configs, presenting an interactive express audit menu:
+When executed without arguments, `mcpaudit` skips generic help banners. It automatically inspects default configuration paths across **Claude Desktop, Cursor, and Windsurf** as well as local workspace configs, presenting an interactive express audit menu:
 
 ```text
 +-----------------------------------------------------------------------------+
-|                   mcp-audit -- Zero-Config Security Auditor                 |
+|                     mcpaudit -- Zero-Config Security Auditor                |
 +-----------------------------------------------------------------------------+
 
 Discovered 3 MCP servers in Claude Desktop:
@@ -66,7 +66,7 @@ Controls: [Up/Down] Navigate  [Space] Toggle  [a] Toggle All  [Enter] Start Audi
 
 ### Traffic Light Scorecard
 
-Instead of unreadable walls of raw debug logs, `mcp-audit` summarizes the security posture of every server into an immediate visual card:
+Instead of unreadable walls of raw debug logs, `mcpaudit` summarizes the security posture of every server into an immediate visual card:
 
 ```text
 ==============================================================================
@@ -113,27 +113,27 @@ Audit any local MCP server executable directly without configuration files:
 
 ```bash
 # Node.js MCP server
-mcp-audit scan --exec "npx -y @modelcontextprotocol/server-filesystem /tmp"
+mcpaudit scan --exec "npx -y @modelcontextprotocol/server-filesystem /tmp"
 
 # Python FastMCP server
-mcp-audit scan --exec "python3 ./weather_server.py"
+mcpaudit scan --exec "python3 ./weather_server.py"
 
 # Compiled binary
-mcp-audit scan --exec "./my-mcp-binary --stdio"
+mcpaudit scan --exec "./my-mcp-binary --stdio"
 ```
 
 ### SARIF 2.1.0 Export for CI/CD
 Generate standard SARIF reports for GitHub Code Scanning, GitLab SAST, or IDE viewers:
 
 ```bash
-mcp-audit scan --exec "node dist/index.js" --sarif results.sarif --fail-on critical
+mcpaudit scan --exec "node dist/index.js" --sarif results.sarif --fail-on critical
 ```
 
 ### Remote Server Audit (--sse)
 Audit remote HTTP/SSE Model Context Protocol endpoints:
 
 ```bash
-mcp-audit remote --sse http://localhost:8080/sse
+mcpaudit remote --sse http://localhost:8080/sse
 ```
 
 ---
@@ -157,7 +157,7 @@ jobs:
 
       - name: Run MCP Audit
         run: |
-          npx mcp-audit scan --exec "node dist/index.js" --sarif results.sarif --fail-on critical
+          npx mcpaudit scan --exec "node dist/index.js" --sarif results.sarif --fail-on critical
 
       - name: Upload SARIF to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3

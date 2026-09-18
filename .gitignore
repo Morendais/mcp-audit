@@ -6,6 +6,8 @@ dist/
 *.so
 *.dylib
 mcp-audit
+mcpaudit
+mcpaudit.exe
 
 # Test artifacts
 *.test

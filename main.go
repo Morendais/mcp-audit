@@ -1,6 +1,6 @@
 package main
 
-import "mcp-audit/cmd"
+import "mcpaudit/cmd"
 
 func main() {
 	cmd.Execute()

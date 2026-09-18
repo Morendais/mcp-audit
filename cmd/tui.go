@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"mcp-audit/pkg/audit"
-	"mcp-audit/pkg/config"
+	"mcpaudit/pkg/audit"
+	"mcpaudit/pkg/config"
 
 	"github.com/spf13/cobra"
 	"golang.org/x/term"
@@ -26,7 +26,7 @@ func runRootDefault(cmd *cobra.Command, args []string) error {
 func runInteractiveTUI() error {
 	fmt.Println()
 	fmt.Println("\033[1;36m╔═══════════════════════════════════════════════════════════════════════════════════╗\033[0m")
-	fmt.Println("\033[1;37m║                     mcp-audit — Zero-Config Security Auditor                     ║\033[0m")
+	fmt.Println("\033[1;37m║                      mcpaudit — Zero-Config Security Auditor                      ║\033[0m")
 	fmt.Println("\033[1;36m╚═══════════════════════════════════════════════════════════════════════════════════╝\033[0m")
 	fmt.Println()
 
@@ -44,13 +44,13 @@ func runInteractiveTUI() error {
 		fmt.Println()
 		fmt.Println("\033[1;37mQuick start options to audit an MCP server:\033[0m")
 		fmt.Println("  1. Audit any server command directly:")
-		fmt.Println("     \033[1;32mmcp-audit scan --exec \"npx -y @modelcontextprotocol/server-filesystem /tmp\"\033[0m")
+		fmt.Println("     \033[1;32mmcpaudit scan --exec \"npx -y @modelcontextprotocol/server-filesystem /tmp\"\033[0m")
 		fmt.Println()
 		fmt.Println("  2. Audit a remote SSE server:")
-		fmt.Println("     \033[1;32mmcp-audit remote --sse http://localhost:8000/sse\033[0m")
+		fmt.Println("     \033[1;32mmcpaudit remote --sse http://localhost:8000/sse\033[0m")
 		fmt.Println()
 		fmt.Println("  3. Specify a configuration file explicitly:")
-		fmt.Println("     \033[1;32mmcp-audit scan --config ./claude_desktop_config.json\033[0m")
+		fmt.Println("     \033[1;32mmcpaudit scan --config ./claude_desktop_config.json\033[0m")
 		fmt.Println()
 		return nil
 	}

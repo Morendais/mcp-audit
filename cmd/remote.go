@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"mcp-audit/pkg/audit"
-	"mcp-audit/pkg/protocol"
+	"mcpaudit/pkg/audit"
+	"mcpaudit/pkg/protocol"
 
 	"github.com/spf13/cobra"
 )
@@ -42,7 +42,7 @@ func runRemote(cmd *cobra.Command, args []string) error {
 		targetURL = args[0]
 	}
 	if targetURL == "" {
-		return fmt.Errorf("remote URL required. Usage: mcp-audit remote <url> or mcp-audit remote --sse <url>")
+		return fmt.Errorf("remote URL required. Usage: mcpaudit remote <url> or mcpaudit remote --sse <url>")
 	}
 	if !strings.HasPrefix(targetURL, "http://") && !strings.HasPrefix(targetURL, "https://") {
 		targetURL = "http://" + targetURL
@@ -60,7 +60,7 @@ func runRemote(cmd *cobra.Command, args []string) error {
 	defer client.Close()
 
 	clientInfo := protocol.ClientInfo{
-		Name:    "mcp-audit",
+		Name:    "mcpaudit",
 		Version: "0.2.0",
 	}
 

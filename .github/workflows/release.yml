@@ -33,10 +33,10 @@ jobs:
             platform_split=(${platform//\// })
             GOOS=${platform_split[0]}
             GOARCH=${platform_split[1]}
-            output_name="mcp-audit"
+            output_name="mcpaudit"
             ext=""
             if [ "$GOOS" = "windows" ]; then
-              output_name="mcp-audit.exe"
+              output_name="mcpaudit.exe"
               ext=".zip"
             else
               ext=".tar.gz"
@@ -45,9 +45,9 @@ jobs:
             target_dir="dist/${GOOS}_${GOARCH}"
             mkdir -p "$target_dir"
             echo "Building for $GOOS/$GOARCH..."
-            env GOOS=$GOOS GOARCH=$GOARCH CGO_ENABLED=0 go build -ldflags="-s -w -X 'mcp-audit/cmd.version=${version}'" -o "$target_dir/$output_name" .
+            env GOOS=$GOOS GOARCH=$GOARCH CGO_ENABLED=0 go build -ldflags="-s -w -X 'mcpaudit/cmd.version=${version}'" -o "$target_dir/$output_name" .
 
-            archive_name="mcp-audit_${version}_${GOOS}_${GOARCH}"
+            archive_name="mcpaudit_${version}_${GOOS}_${GOARCH}"
             if [ "$GOOS" = "windows" ]; then
               (cd "$target_dir" && zip "../../dist/${archive_name}.zip" "$output_name")
             else
