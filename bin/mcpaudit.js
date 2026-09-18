@@ -26,19 +26,22 @@ function getPlatformBinary() {
   const ext = platform === 'win32' ? '.exe' : '';
   const binName = `mcpaudit${ext}`;
   const legacyName = `mcp-audit${ext}`;
+  const platformBinName = `mcpaudit-${osName}-${archName}${ext}`;
 
-  return { osName, archName, binName, legacyName };
+  return { osName, archName, binName, legacyName, platformBinName, ext };
 }
 
 function resolveBinaryPath() {
-  const { osName, archName, binName, legacyName } = getPlatformBinary();
+  const { osName, archName, binName, legacyName, platformBinName } = getPlatformBinary();
 
-  // 1. Check adjacent compiled binary (e.g. repo root or local build)
+  // 1. Check adjacent compiled binary (e.g. repo root, npm bin folder, or local build)
   const localPaths = [
-    path.join(__dirname, '..', binName),
-    path.join(__dirname, '..', legacyName),
+    path.join(__dirname, platformBinName),
     path.join(__dirname, binName),
     path.join(__dirname, legacyName),
+    path.join(__dirname, '..', platformBinName),
+    path.join(__dirname, '..', binName),
+    path.join(__dirname, '..', legacyName),
     path.join(__dirname, '..', 'dist', binName),
     path.join(__dirname, '..', 'dist', legacyName),
     path.join(__dirname, '..', 'bin', `${osName}_${archName}`, binName),
@@ -47,6 +50,9 @@ function resolveBinaryPath() {
 
   for (const p of localPaths) {
     if (fs.existsSync(p)) {
+      if (os.platform() !== 'win32') {
+        try { fs.chmodSync(p, 0o755); } catch (_) {}
+      }
       return p;
     }
   }

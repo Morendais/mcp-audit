@@ -1,0 +1,8 @@
+.git
+.github
+*.test
+*.out
+*.prof
+tmp/
+coverage.html
+mcpaudit.exe
