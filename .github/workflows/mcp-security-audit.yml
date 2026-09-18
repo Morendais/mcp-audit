@@ -1,0 +1,39 @@
+name: MCP Security Audit
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  mcp-audit:
+    name: Audit MCP Server
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node / Python environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install mcp-hunter
+        run: go install github.com/mcp-hunter/mcp-hunter@latest
+
+      - name: Execute Dynamic Security Audit
+        run: |
+          mcp-hunter scan \
+            --exec "node dist/index.js" \
+            --sarif results.sarif \
+            --fail-on critical
+
+      - name: Upload SARIF to GitHub Security Tab
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results.sarif

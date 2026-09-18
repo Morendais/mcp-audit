@@ -1,0 +1,27 @@
+# Binaries
+bin/
+dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+mcp-hunter
+
+# Test artifacts
+*.test
+*.out
+*.sarif
+*.prof
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Temporary outputs
+tmp/
+coverage.html

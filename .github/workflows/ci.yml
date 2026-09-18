@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    name: Test & Cross-Compile
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          cache: true
+
+      - name: Run Unit & Protocol Tests
+        run: go test -v -race ./...
+
+      - name: Build Binary (Linux amd64)
+        run: env GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o dist/mcp-hunter-linux-amd64 .
+
+      - name: Build Binary (macOS arm64)
+        run: env GOOS=darwin GOARCH=arm64 go build -ldflags="-s -w" -o dist/mcp-hunter-darwin-arm64 .
+
+      - name: Build Binary (Windows amd64)
+        run: env GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o dist/mcp-hunter-windows-amd64.exe .
