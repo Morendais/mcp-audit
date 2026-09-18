@@ -141,9 +141,9 @@ func FormatSARIF(report AuditReport) (string, error) {
 			{
 				Tool: SARIFToolComponent{
 					Driver: SARIFDriver{
-						Name:           "mcp-hunter",
+						Name:           "mcp-audit",
 						Version:        "0.1.0",
-						InformationURI: "https://github.com/mcp-hunter/mcp-hunter",
+						InformationURI: "https://github.com/mcp-audit/mcp-audit",
 						Rules:          rulesList,
 					},
 				},

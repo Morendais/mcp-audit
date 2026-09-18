@@ -1,16 +1,16 @@
 {
-  "name": "mcp-hunter",
+  "name": "mcp-audit",
   "version": "0.2.0",
   "description": "Zero-config security auditor and dynamic fuzzer for Model Context Protocol (MCP) servers",
   "bin": {
-    "mcp-hunter": "./bin/mcp-hunter.js"
+    "mcp-audit": "./bin/mcp-audit.js"
   },
   "scripts": {
-    "postinstall": "node ./bin/mcp-hunter.js --check-install"
+    "postinstall": "node ./bin/mcp-audit.js --check-install"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mcphunter/mcp-hunter.git"
+    "url": "https://github.com/<your-username>/mcp-audit.git"
   },
   "keywords": [
     "mcp",
@@ -24,7 +24,7 @@
     "sarif",
     "dast"
   ],
-  "author": "mcp-hunter team",
+  "author": "mcp-audit team",
   "license": "Apache-2.0",
   "engines": {
     "node": ">=16.0.0"

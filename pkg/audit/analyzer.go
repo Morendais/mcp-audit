@@ -5,8 +5,8 @@ import (
 	"regexp"
 	"strings"
 
-	"mcp-hunter/pkg/config"
-	"mcp-hunter/pkg/protocol"
+	"mcp-audit/pkg/config"
+	"mcp-audit/pkg/protocol"
 )
 
 var (

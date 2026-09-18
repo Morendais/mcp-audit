@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-REPO="mcphunter/mcp-hunter"
+REPO="${GITHUB_REPOSITORY:-<your-username>/mcp-audit}"
 VERSION="0.2.0"
 
-echo -e "\033[1;36m==>\033[0m Installing \033[1mmcp-hunter\033[0m v${VERSION}..."
+echo -e "\033[1;36m==>\033[0m Installing \033[1mmcp-audit\033[0m v${VERSION}..."
 
 OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
 ARCH="$(uname -m)"
@@ -31,7 +31,7 @@ case "$OS" in
     ;;
 esac
 
-DOWNLOAD_URL="https://github.com/${REPO}/releases/download/v${VERSION}/mcp-hunter_${OS}_${ARCH}.tar.gz"
+DOWNLOAD_URL="https://github.com/${REPO}/releases/download/v${VERSION}/mcp-audit_${OS}_${ARCH}.tar.gz"
 
 INSTALL_DIR="/usr/local/bin"
 if [ ! -w "$INSTALL_DIR" ]; then
@@ -44,18 +44,18 @@ trap 'rm -rf "$TMP_DIR"' EXIT
 
 echo -e "\033[1;34m-->\033[0m Fetching ${OS}/${ARCH} release package..."
 if command -v curl >/dev/null 2>&1; then
-  curl -fsSL "$DOWNLOAD_URL" -o "$TMP_DIR/mcp-hunter.tar.gz"
+  curl -fsSL "$DOWNLOAD_URL" -o "$TMP_DIR/mcp-audit.tar.gz"
 elif command -v wget >/dev/null 2>&1; then
-  wget -qO "$TMP_DIR/mcp-hunter.tar.gz" "$DOWNLOAD_URL"
+  wget -qO "$TMP_DIR/mcp-audit.tar.gz" "$DOWNLOAD_URL"
 else
   echo "Error: curl or wget required"
   exit 1
 fi
 
-tar -xzf "$TMP_DIR/mcp-hunter.tar.gz" -C "$TMP_DIR"
-install -m 755 "$TMP_DIR/mcp-hunter" "$INSTALL_DIR/mcp-hunter"
+tar -xzf "$TMP_DIR/mcp-audit.tar.gz" -C "$TMP_DIR"
+install -m 755 "$TMP_DIR/mcp-audit" "$INSTALL_DIR/mcp-audit"
 
-echo -e "\033[1;32m✔ Successfully installed mcp-hunter to ${INSTALL_DIR}/mcp-hunter\033[0m"
+echo -e "\033[1;32m✔ Successfully installed mcp-audit to ${INSTALL_DIR}/mcp-audit\033[0m"
 
 # Verify PATH
 if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
@@ -66,4 +66,4 @@ fi
 
 echo
 echo -e "\033[1;37mRun zero-config audit:\033[0m"
-echo "  mcp-hunter"
+echo "  mcp-audit"

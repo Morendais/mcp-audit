@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"testing"
 
-	"mcp-hunter/pkg/config"
-	"mcp-hunter/pkg/protocol"
+	"mcp-audit/pkg/config"
+	"mcp-audit/pkg/protocol"
 )
 
 func TestAnalyzeServerConfig_SecretLeak(t *testing.T) {

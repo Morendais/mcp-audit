@@ -1,11 +1,11 @@
-# 🛡️ MCP-Hunter: Developer Security Scanner & DAST Fuzzer for MCP Servers
+# 🛡️ MCP-Audit: Developer Security Scanner & DAST Fuzzer for MCP Servers
 
-[![CI](https://github.com/mcp-hunter/mcp-hunter/actions/workflows/ci.yml/badge.svg)](https://github.com/mcp-hunter/mcp-hunter/actions)
+[![CI](https://github.com/mcp-audit/mcp-audit/actions/workflows/ci.yml/badge.svg)](https://github.com/mcp-audit/mcp-audit/actions)
 [![SARIF 2.1.0](https://img.shields.io/badge/SARIF-2.1.0-blue.svg)](https://docs.oasis-open.org/sarif/sarif/v2.1.0/sarif-v2.1.0.html)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![npm version](https://img.shields.io/npm/v/mcp-hunter.svg)](https://www.npmjs.com/package/mcp-hunter)
+[![npm version](https://img.shields.io/npm/v/mcp-audit.svg)](https://www.npmjs.com/package/mcp-audit)
 
-> **`mcp-hunter`** is a zero-config, developer-first command-line security auditor and dynamic application security testing (DAST) fuzzer for the **Model Context Protocol (MCP)**. It identifies critical vulnerabilities—such as **Path Traversal, Remote Command Execution, SQL Injection, SSRF, Prompt Hijacking, and DoS type-confusion crashes**—before deploying MCP servers to production AI agents.
+> **`mcp-audit`** is a zero-config, developer-first command-line security auditor and dynamic application security testing (DAST) fuzzer for the **Model Context Protocol (MCP)**. It identifies critical vulnerabilities—such as **Path Traversal, Remote Command Execution, SQL Injection, SSRF, Prompt Hijacking, and DoS type-confusion crashes**—before deploying MCP servers to production AI agents.
 
 ---
 
@@ -13,34 +13,34 @@
 
 ### Option A: Run instantly via `npx` (No installation needed)
 ```bash
-npx mcp-hunter
+npx mcp-audit
 ```
 
 ### Option B: Native Shell Install
 **macOS / Linux:**
 ```bash
-curl -fsSL https://mcphunter.dev/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/<your-username>/mcp-audit/main/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
-irm https://mcphunter.dev/install.ps1 | iex
+irm https://raw.githubusercontent.com/<your-username>/mcp-audit/main/install.ps1 | iex
 ```
 
 ### Option C: Go Install / Binaries
 ```bash
-go install github.com/mcp-hunter/mcp-hunter@latest
+go install github.com/mcp-audit/mcp-audit@latest
 ```
 
 ---
 
 ## 🎮 Zero-Config Interactive TUI (Default Mode)
 
-When executed without arguments, `mcp-hunter` **never dumps useless help text**. Instead, it automatically discovers MCP environments across **Claude Desktop, Cursor, and Windsurf**, detects all registered servers, and opens an interactive express audit wizard:
+When executed without arguments, `mcp-audit` **never dumps useless help text**. Instead, it automatically discovers MCP environments across **Claude Desktop, Cursor, and Windsurf**, detects all registered servers, and opens an interactive express audit wizard:
 
 ```text
 ╔═══════════════════════════════════════════════════════════════════════════════════╗
-║                     mcp-hunter — Zero-Config Security Auditor                     ║
+║                     mcp-audit — Zero-Config Security Auditor                     ║
 ╚═══════════════════════════════════════════════════════════════════════════════════╝
 
 Discovered 3 MCP servers in Claude Desktop:
@@ -53,7 +53,7 @@ Controls: [↑/↓] Navigate  [Space] Toggle  [a] Toggle All  [Enter] Start Audi
 
 ### 🚦 Traffic Light Scorecard
 
-Instead of overwhelming walls of raw logs, `mcp-hunter` displays a clean, immediate traffic-light verdict:
+Instead of overwhelming walls of raw logs, `mcp-audit` displays a clean, immediate traffic-light verdict:
 
 ```text
 ══════════════════════════════════════════════════════════════════════════════
@@ -83,32 +83,32 @@ Audit any local MCP server executable directly without touching configuration fi
 
 ```bash
 # Node.js MCP server
-mcp-hunter scan --exec "npx -y @modelcontextprotocol/server-filesystem /tmp"
+mcp-audit scan --exec "npx -y @modelcontextprotocol/server-filesystem /tmp"
 
 # Python FastMCP server
-mcp-hunter scan --exec "python3 ./weather_server.py"
+mcp-audit scan --exec "python3 ./weather_server.py"
 
 # Compiled binary
-mcp-hunter scan --exec "./my-mcp-binary --stdio"
+mcp-audit scan --exec "./my-mcp-binary --stdio"
 ```
 
 ### 2. Export SARIF for GitHub Code Scanning & CI/CD
 Generate standard SARIF reports to display interactive vulnerability annotations on Pull Requests:
 
 ```bash
-mcp-hunter scan --exec "node dist/index.js" --sarif results.sarif --fail-on critical
+mcp-audit scan --exec "node dist/index.js" --sarif results.sarif --fail-on critical
 ```
 
 ### 3. Audit Remote HTTP / SSE MCP Endpoints
 ```bash
-mcp-hunter remote --sse http://localhost:8080/sse
+mcp-audit remote --sse http://localhost:8080/sse
 ```
 
 ---
 
 ## 📊 The Global MCP Security Study (20,010 Servers Audited)
 
-`mcp-hunter` was born out of an extensive research project auditing the public MCP ecosystem (**20,010 servers analyzed** across npm, PyPI, and GitHub). 
+`mcp-audit` was born out of an extensive research project auditing the public MCP ecosystem (**20,010 servers analyzed** across npm, PyPI, and GitHub). 
 
 ### Key Study Statistics:
 ```text
@@ -161,9 +161,9 @@ jobs:
         with:
           node-version: 20
 
-      - name: Run MCP Hunter Audit
+      - name: Run MCP Audit
         run: |
-          npx mcp-hunter scan --exec "node dist/index.js" --sarif results.sarif --fail-on critical
+          npx mcp-audit scan --exec "node dist/index.js" --sarif results.sarif --fail-on critical
 
       - name: Upload SARIF to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3

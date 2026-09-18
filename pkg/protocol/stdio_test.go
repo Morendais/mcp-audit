@@ -57,7 +57,7 @@ func TestStdioClient_InitializeAndListTools(t *testing.T) {
 	defer client.Close()
 
 	// Handshake
-	clientInfo := ClientInfo{Name: "mcp-hunter-test", Version: "0.1.0"}
+	clientInfo := ClientInfo{Name: "mcp-audit-test", Version: "0.1.0"}
 	initRes, err := client.Initialize(ctx, clientInfo)
 	if err != nil {
 		t.Fatalf("Initialize failed: %v", err)

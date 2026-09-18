@@ -24,10 +24,10 @@ jobs:
         run: go test -v -race ./...
 
       - name: Build Binary (Linux amd64)
-        run: env GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o dist/mcp-hunter-linux-amd64 .
+        run: env GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o dist/mcp-audit-linux-amd64 .
 
       - name: Build Binary (macOS arm64)
-        run: env GOOS=darwin GOARCH=arm64 go build -ldflags="-s -w" -o dist/mcp-hunter-darwin-arm64 .
+        run: env GOOS=darwin GOARCH=arm64 go build -ldflags="-s -w" -o dist/mcp-audit-darwin-arm64 .
 
       - name: Build Binary (Windows amd64)
-        run: env GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o dist/mcp-hunter-windows-amd64.exe .
+        run: env GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o dist/mcp-audit-windows-amd64.exe .

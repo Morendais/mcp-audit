@@ -7,7 +7,7 @@ const { spawnSync } = require('child_process');
 const https = require('https');
 
 const VERSION = '0.2.0';
-const REPO = 'mcphunter/mcp-hunter';
+const REPO = process.env.GITHUB_REPOSITORY || '<your-username>/mcp-audit';
 
 function getPlatformBinary() {
   const platform = os.platform();
@@ -25,7 +25,7 @@ function getPlatformBinary() {
   else throw new Error(`Unsupported architecture: ${arch}`);
 
   const ext = platform === 'win32' ? '.exe' : '';
-  const binName = `mcp-hunter${ext}`;
+  const binName = `mcp-audit${ext}`;
 
   return { osName, archName, binName };
 }
@@ -47,9 +47,9 @@ function resolveBinaryPath() {
     }
   }
 
-  // 2. Check user cache directory (~/.mcp-hunter/bin/mcp-hunter)
-  const cacheDir = path.join(os.homedir(), '.mcp-hunter', 'bin');
-  const cachedBin = path.join(cacheDir, `mcp-hunter-${VERSION}-${osName}-${archName}${getPlatformBinary().binName.endsWith('.exe') ? '.exe' : ''}`);
+  // 2. Check user cache directory (~/.mcp-audit/bin/mcp-audit)
+  const cacheDir = path.join(os.homedir(), '.mcp-audit', 'bin');
+  const cachedBin = path.join(cacheDir, `mcp-audit-${VERSION}-${osName}-${archName}${getPlatformBinary().binName.endsWith('.exe') ? '.exe' : ''}`);
   if (fs.existsSync(cachedBin)) {
     return cachedBin;
   }
@@ -60,13 +60,13 @@ function resolveBinaryPath() {
 function downloadBinary(targetPath, callback) {
   const { osName, archName } = getPlatformBinary();
   const ext = osName === 'windows' ? '.zip' : '.tar.gz';
-  const downloadUrl = `https://github.com/${REPO}/releases/download/v${VERSION}/mcp-hunter_${osName}_${archName}${ext}`;
+  const downloadUrl = `https://github.com/${REPO}/releases/download/v${VERSION}/mcp-audit_${osName}_${archName}${ext}`;
 
-  console.log(`[mcp-hunter] Downloading pre-built binary for ${osName}/${archName}...`);
-  console.log(`[mcp-hunter] URL: ${downloadUrl}`);
+  console.log(`[mcp-audit] Downloading pre-built binary for ${osName}/${archName}...`);
+  console.log(`[mcp-audit] URL: ${downloadUrl}`);
 
   // In offline or pre-release mode, if download fails or is pending, provide graceful instructions
-  callback(new Error(`Binary not yet downloaded. Please install mcp-hunter natively or build with 'go build'.`));
+  callback(new Error(`Binary not yet downloaded. Please install mcp-audit natively or build with 'go build'.`));
 }
 
 function main() {
@@ -83,8 +83,8 @@ function main() {
     process.exit(result.status ?? 0);
   }
 
-  // If local binary is not found, check if mcp-hunter is already in system PATH
-  const whichResult = spawnSync(os.platform() === 'win32' ? 'where' : 'which', ['mcp-hunter'], { encoding: 'utf-8' });
+  // If local binary is not found, check if mcp-audit is already in system PATH
+  const whichResult = spawnSync(os.platform() === 'win32' ? 'where' : 'which', ['mcp-audit'], { encoding: 'utf-8' });
   if (whichResult.status === 0 && whichResult.stdout) {
     const systemBin = whichResult.stdout.trim().split(/\r?\n/)[0];
     if (systemBin && fs.existsSync(systemBin)) {
@@ -94,13 +94,13 @@ function main() {
   }
 
   // Fallback: Inform user how to build or download
-  console.log('\x1b[1;36m[mcp-hunter]\x1b[0m Zero-config MCP security scanner');
+  console.log('\x1b[1;36m[mcp-audit]\x1b[0m Zero-config MCP security scanner');
   console.log('\x1b[33mPre-built binary not found locally in npm package.\x1b[0m');
-  console.log('To run native mcp-hunter, choose one of:');
-  console.log('  1. Shell install (Linux/macOS):   curl -fsSL https://mcphunter.dev/install.sh | bash');
-  console.log('  2. PowerShell (Windows):         irm https://mcphunter.dev/install.ps1 | iex');
-  console.log('  3. Go install:                   go install github.com/mcphunter/mcp-hunter@latest');
-  console.log('  4. Build from source:            git clone https://github.com/mcphunter/mcp-hunter && go build');
+  console.log('To run native mcp-audit, choose one of:');
+  console.log('  1. Shell install (Linux/macOS):   curl -fsSL https://mcpaudit.dev/install.sh | bash');
+  console.log('  2. PowerShell (Windows):         irm https://mcpaudit.dev/install.ps1 | iex');
+  console.log('  3. Go install:                   go install github.com/mcpaudit/mcp-audit@latest');
+  console.log('  4. Build from source:            git clone https://github.com/mcpaudit/mcp-audit && go build');
   process.exit(1);
 }
 

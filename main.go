@@ -1,6 +1,6 @@
 package main
 
-import "mcp-hunter/cmd"
+import "mcp-audit/cmd"
 
 func main() {
 	cmd.Execute()

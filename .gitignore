@@ -5,7 +5,7 @@ dist/
 *.dll
 *.so
 *.dylib
-mcp-hunter
+mcp-audit
 
 # Test artifacts
 *.test

@@ -146,7 +146,7 @@ func AutoDiscoverConfig() (string, string, error) {
 		checkedList += fmt.Sprintf("    - %s: %s\n", c.Name, c.Path)
 	}
 
-	return "", "", fmt.Errorf("no MCP configuration file found. Checked locations:\n%s\nTips:\n    - Run direct command scan without config: mcp-hunter local --exec \"python3 /path/to/server.py\"\n    - Or create a simple ./mcp.json in the current directory\n    - Or specify path explicitly: --config <path>", checkedList)
+	return "", "", fmt.Errorf("no MCP configuration file found. Checked locations:\n%s\nTips:\n    - Run direct command scan without config: mcp-audit local --exec \"python3 /path/to/server.py\"\n    - Or create a simple ./mcp.json in the current directory\n    - Or specify path explicitly: --config <path>", checkedList)
 }
 
 // FindClaudeDesktopConfig locates the Claude Desktop config file, verifying that it exists.

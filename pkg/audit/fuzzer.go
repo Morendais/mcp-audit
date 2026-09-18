@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"mcp-hunter/pkg/protocol"
+	"mcp-audit/pkg/protocol"
 )
 
 // FuzzTool executes dynamic active verification probes against a suspected tool attack surface.

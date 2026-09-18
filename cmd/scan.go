@@ -8,9 +8,9 @@ import (
 	"sort"
 	"strings"
 
-	"mcp-hunter/pkg/audit"
-	"mcp-hunter/pkg/config"
-	"mcp-hunter/pkg/protocol"
+	"mcp-audit/pkg/audit"
+	"mcp-audit/pkg/config"
+	"mcp-audit/pkg/protocol"
 
 	"github.com/spf13/cobra"
 )
@@ -271,7 +271,7 @@ func auditServer(name string, srv config.ServerConfig, printConsole bool, runAud
 
 	// Handshake: Initialize
 	clientInfo := protocol.ClientInfo{
-		Name:    "mcp-hunter",
+		Name:    "mcp-audit",
 		Version: "0.2.0",
 	}
 

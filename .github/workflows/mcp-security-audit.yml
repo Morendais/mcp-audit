@@ -22,12 +22,12 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install mcp-hunter
-        run: go install github.com/mcp-hunter/mcp-hunter@latest
+      - name: Install mcp-audit
+        run: go install github.com/mcp-audit/mcp-audit@latest
 
       - name: Execute Dynamic Security Audit
         run: |
-          mcp-hunter scan \
+          mcp-audit scan \
             --exec "node dist/index.js" \
             --sarif results.sarif \
             --fail-on critical
