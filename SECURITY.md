@@ -15,9 +15,9 @@ The `mcp-audit` project is committed to ensuring the security of the Model Conte
 Please **DO NOT** create a public GitHub issue for security vulnerabilities.
 
 Instead:
-1. Open a **Private Security Advisory** via GitHub:
-   [Report a vulnerability](https://github.com/Morendais/mcp-audit/security/advisories/new)
-2. Or contact the maintainer privately.
+1. Open a **Private Security Advisory** on GitHub:
+   Navigate to the repository's **Security** tab and select **Report a vulnerability** (or visit [advisories/new](https://github.com/Morendais/mcp-audit/security/advisories/new) once Private Vulnerability Reporting is enabled in repository settings).
+2. Alternatively, contact the maintainer directly via GitHub profile message or private email.
 
 ### What to Include
 - Detailed description of the vulnerability and its attack vector.

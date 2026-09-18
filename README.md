@@ -34,16 +34,11 @@ Rather than relying purely on static regex matching, `mcp-audit` initiates an ac
 npx mcp-audit
 ```
 
-### Option 2: Native Shell Install
-**macOS / Linux:**
-```bash
-curl -fsSL https://raw.githubusercontent.com/Morendais/mcp-audit/main/install.sh | bash
-```
-
-**Windows (PowerShell):**
-```powershell
-irm https://raw.githubusercontent.com/Morendais/mcp-audit/main/install.ps1 | iex
-```
+### Option 2: Pre-built Binaries (GitHub Releases)
+Download standalone executable archives from [GitHub Releases](https://github.com/Morendais/mcp-audit/releases/latest):
+- **Windows:** Download `mcp-audit_windows_amd64.zip`, extract and run `mcp-audit.exe`.
+- **Linux:** Download `mcp-audit_linux_amd64.tar.gz`.
+- **macOS:** Download `mcp-audit_darwin_arm64.tar.gz` (Apple Silicon) or `mcp-audit_darwin_amd64.tar.gz` (Intel).
 
 ### Option 3: Go Install
 ```bash
