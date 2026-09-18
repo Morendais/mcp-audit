@@ -89,26 +89,6 @@ Tip: Run with --verbose for full JSON-RPC traces or --sarif report.sarif for CI/
 
 ---
 
-## How It Works
-
-```mermaid
-flowchart TD
-    A[Target MCP Server] -->|stdio / SSE| B[mcp-audit Protocol Engine]
-    B --> C[Phase 1: Handshake & Discovery]
-    C -->|initialize & tools/list| D[Tool & Schema Enumeration]
-    D --> E[Phase 2: Static Schema Analysis]
-    E --> F[Phase 3: Active DAST Fuzzing]
-    F -->|Safe Mutation Probes| G{Behavior Analysis}
-    G -->|Sanitized / Rejected| H[Defended: Green]
-    G -->|Leaked Canary / Executed| I[Vulnerability: Red]
-    G -->|Unhandled Exception / Crash| J[Crash Bug: Yellow]
-    H --> K[Output: Scorecard / SARIF 2.1.0]
-    I --> K
-    J --> K
-```
-
----
-
 ## Limitations and Manual Verification
 
 Automated dynamic testing and heuristic schema analysis provide fast, high-coverage feedback, but **automated tools can make mistakes**. Automated findings must always be reviewed in context by a human engineer.

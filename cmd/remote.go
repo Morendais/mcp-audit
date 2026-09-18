@@ -16,14 +16,15 @@ var (
 	remoteFormat string
 	remoteOutput string
 	runAudit     bool
+	sseURLFlag   string
 )
 
 var remoteCmd = &cobra.Command{
-	Use:   "remote <url>",
+	Use:   "remote [<url>]",
 	Short: "Audit a remote MCP server over HTTP/SSE",
 	Long: `Connects to an external or remote MCP server via HTTP/SSE, completes the protocol handshake,
 retrieves the tool list, and runs security vulnerability analysis on exposed tools and argument schemas.`,
-	Args: cobra.ExactArgs(1),
+	Args: cobra.MaximumNArgs(1),
 	RunE: runRemote,
 }
 
@@ -31,11 +32,18 @@ func init() {
 	RootCmd.AddCommand(remoteCmd)
 	remoteCmd.Flags().StringVarP(&remoteFormat, "format", "f", "console", "Output format (console, json, markdown, sarif)")
 	remoteCmd.Flags().StringVarP(&remoteOutput, "output", "o", "", "File path to save the generated report")
+	remoteCmd.Flags().StringVar(&sseURLFlag, "sse", "", "URL to remote SSE endpoint")
 	remoteCmd.Flags().BoolVar(&runAudit, "audit", true, "Execute security vulnerability rules on discovered tools")
 }
 
 func runRemote(cmd *cobra.Command, args []string) error {
-	targetURL := args[0]
+	targetURL := sseURLFlag
+	if len(args) > 0 && args[0] != "" {
+		targetURL = args[0]
+	}
+	if targetURL == "" {
+		return fmt.Errorf("remote URL required. Usage: mcp-audit remote <url> or mcp-audit remote --sse <url>")
+	}
 	if !strings.HasPrefix(targetURL, "http://") && !strings.HasPrefix(targetURL, "https://") {
 		targetURL = "http://" + targetURL
 	}
