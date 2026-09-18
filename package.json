@@ -3,15 +3,15 @@
   "version": "0.2.0",
   "description": "Zero-config security auditor and dynamic fuzzer for Model Context Protocol (MCP) servers",
   "bin": {
-    "mcpaudit": "./bin/mcpaudit.js",
-    "mcp-audit": "./bin/mcpaudit.js"
+    "mcpaudit": "bin/mcpaudit.js",
+    "mcp-audit": "bin/mcpaudit.js"
   },
   "scripts": {
     "postinstall": "node ./bin/mcpaudit.js --check-install"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Morendais/mcp-audit.git"
+    "url": "git+https://github.com/Morendais/mcp-audit.git"
   },
   "keywords": [
     "mcpaudit",
