@@ -19,7 +19,7 @@ if (!(Test-Path $InstallDir)) {
 }
 
 $TargetExe = Join-Path $InstallDir "mcpaudit.exe"
-$DownloadUrl = "https://github.com/$Repo/releases/download/v$Version/mcpaudit_windows_$Arch.zip"
+$DownloadUrl = "https://github.com/$Repo/releases/download/v$Version/mcpaudit_v${Version}_windows_$Arch.zip"
 $ZipPath = Join-Path $env:TEMP "mcpaudit.zip"
 
 Write-Host "--> Downloading package from GitHub releases..." -ForegroundColor Gray

@@ -31,7 +31,7 @@ case "$OS" in
     ;;
 esac
 
-DOWNLOAD_URL="https://github.com/${REPO}/releases/download/v${VERSION}/mcpaudit_${OS}_${ARCH}.tar.gz"
+DOWNLOAD_URL="https://github.com/${REPO}/releases/download/v${VERSION}/mcpaudit_v${VERSION}_${OS}_${ARCH}.tar.gz"
 
 INSTALL_DIR="/usr/local/bin"
 if [ ! -w "$INSTALL_DIR" ]; then

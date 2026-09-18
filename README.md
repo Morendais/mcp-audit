@@ -36,9 +36,9 @@ npx @morendais/mcpaudit
 
 ### Option 2: Pre-built Binaries (GitHub Releases)
 Download standalone executable archives from [GitHub Releases](https://github.com/Morendais/mcp-audit/releases/latest):
-- **Windows:** Download `mcpaudit_windows_amd64.zip`, extract and run `mcpaudit.exe`.
-- **Linux:** Download `mcpaudit_linux_amd64.tar.gz`.
-- **macOS:** Download `mcpaudit_darwin_arm64.tar.gz` (Apple Silicon) or `mcpaudit_darwin_amd64.tar.gz` (Intel).
+- **Windows:** Download `mcpaudit_v0.2.2_windows_amd64.zip`, extract and run `mcpaudit.exe`.
+- **Linux:** Download `mcpaudit_v0.2.2_linux_amd64.tar.gz`.
+- **macOS:** Download `mcpaudit_v0.2.2_darwin_arm64.tar.gz` (Apple Silicon) or `mcpaudit_v0.2.2_darwin_amd64.tar.gz` (Intel).
 
 ### Option 3: Go Install
 ```bash
