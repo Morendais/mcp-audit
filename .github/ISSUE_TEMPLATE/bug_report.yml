@@ -1,0 +1,39 @@
+name: Bug Report
+description: Report an issue or unexpected behavior in mcp-audit
+title: "[BUG]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to report a bug!
+  - type: input
+    id: version
+    attributes:
+      label: mcp-audit Version
+      placeholder: e.g. 0.2.0 (mcp-audit version)
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      placeholder: e.g. Windows 11, macOS Sequoia, Ubuntu 24.04
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the Bug
+      description: A clear and concise description of what happened.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Commands run and environment configuration.
+      placeholder: |
+        1. Run 'mcp-audit scan --exec "..."'
+        2. See error ...
+    validations:
+      required: true

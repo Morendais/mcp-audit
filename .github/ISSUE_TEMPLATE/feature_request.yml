@@ -1,0 +1,19 @@
+name: Feature Request
+description: Suggest an idea or new check for mcp-audit
+title: "[FEATURE]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Feature
+      description: Describe the feature or fuzzer rule you would like to see.
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation / Use Case
+      description: Why would this feature be useful to MCP developers?
+    validations:
+      required: true

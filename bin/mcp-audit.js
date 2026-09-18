@@ -7,7 +7,7 @@ const { spawnSync } = require('child_process');
 const https = require('https');
 
 const VERSION = '0.2.0';
-const REPO = process.env.GITHUB_REPOSITORY || '<your-username>/mcp-audit';
+const REPO = process.env.GITHUB_REPOSITORY || 'Morendais/mcp-audit';
 
 function getPlatformBinary() {
   const platform = os.platform();

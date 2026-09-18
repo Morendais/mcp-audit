@@ -19,12 +19,12 @@ npx mcp-audit
 ### Option B: Native Shell Install
 **macOS / Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/<your-username>/mcp-audit/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Morendais/mcp-audit/main/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
-irm https://raw.githubusercontent.com/<your-username>/mcp-audit/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/Morendais/mcp-audit/main/install.ps1 | iex
 ```
 
 ### Option C: Go Install / Binaries

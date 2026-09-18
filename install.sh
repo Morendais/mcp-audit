@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-REPO="${GITHUB_REPOSITORY:-<your-username>/mcp-audit}"
+REPO="${GITHUB_REPOSITORY:-Morendais/mcp-audit}"
 VERSION="0.2.0"
 
 echo -e "\033[1;36m==>\033[0m Installing \033[1mmcp-audit\033[0m v${VERSION}..."

@@ -1,7 +1,7 @@
 # mcp-audit installer for Windows PowerShell
 $ErrorActionPreference = 'Stop'
 
-$Repo = if ($env:GITHUB_REPOSITORY) { $env:GITHUB_REPOSITORY } else { "<your-username>/mcp-audit" }
+$Repo = if ($env:GITHUB_REPOSITORY) { $env:GITHUB_REPOSITORY } else { "Morendais/mcp-audit" }
 $Version = "0.2.0"
 
 Write-Host "==> Installing mcp-audit v$Version for Windows..." -ForegroundColor Cyan
