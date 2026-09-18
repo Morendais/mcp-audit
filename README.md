@@ -5,7 +5,7 @@ Developer Security Scanner and Dynamic Application Security Testing (DAST) Fuzze
 [![CI](https://github.com/Morendais/mcp-audit/actions/workflows/ci.yml/badge.svg)](https://github.com/Morendais/mcp-audit/actions)
 [![SARIF 2.1.0](https://img.shields.io/badge/SARIF-2.1.0-blue.svg)](https://docs.oasis-open.org/sarif/sarif/v2.1.0/sarif-v2.1.0.html)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![npm version](https://img.shields.io/npm/v/mcpaudit.svg)](https://www.npmjs.com/package/mcpaudit)
+[![npm version](https://img.shields.io/npm/v/@morendais/mcpaudit.svg)](https://www.npmjs.com/package/@morendais/mcpaudit)
 
 > **Important Notice & Disclaimer:**
 > `mcpaudit` is created strictly for developers, system administrators, and security researchers to audit and verify **their own** Model Context Protocol (MCP) servers or environments where they have explicit, written permission to test.
@@ -31,7 +31,7 @@ Rather than relying purely on static regex matching, `mcpaudit` initiates an act
 
 ### Option 1: Run instantly via npx (Zero-install)
 ```bash
-npx mcpaudit
+npx @morendais/mcpaudit
 ```
 
 ### Option 2: Pre-built Binaries (GitHub Releases)
@@ -157,7 +157,7 @@ jobs:
 
       - name: Run MCP Audit
         run: |
-          npx mcpaudit scan --exec "node dist/index.js" --sarif results.sarif --fail-on critical
+          npx @morendais/mcpaudit scan --exec "node dist/index.js" --sarif results.sarif --fail-on critical
 
       - name: Upload SARIF to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3

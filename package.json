@@ -1,7 +1,10 @@
 {
-  "name": "mcpaudit",
-  "version": "0.2.0",
+  "name": "@morendais/mcpaudit",
+  "version": "0.2.1",
   "description": "Zero-config security auditor and dynamic fuzzer for Model Context Protocol (MCP) servers",
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "mcpaudit": "bin/mcpaudit.js",
     "mcp-audit": "bin/mcpaudit.js"
