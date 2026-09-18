@@ -7,7 +7,15 @@ type ServerConfig struct {
 	Env     map[string]string `json:"env,omitempty"`
 }
 
-// ClaudeConfig represents the structure of Claude Desktop configuration file.
+// ClaudeConfig represents the structure of Claude Desktop / Cursor / Windsurf configuration files.
 type ClaudeConfig struct {
 	MCPServers map[string]ServerConfig `json:"mcpServers"`
+}
+
+// DiscoveredServer represents an MCP server found during auto-discovery.
+type DiscoveredServer struct {
+	Name       string       `json:"name"`
+	Source     string       `json:"source"`
+	ConfigPath string       `json:"config_path"`
+	Config     ServerConfig `json:"config"`
 }

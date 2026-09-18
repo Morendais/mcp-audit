@@ -57,7 +57,40 @@ func GetCandidateConfigPaths() []CandidateLocation {
 		}
 	}
 
-	// 4. Claude Desktop config
+	// 4. Windsurf config
+	if homeDir != "" {
+		candidates = append(candidates,
+			CandidateLocation{Name: "Windsurf (~/.codeium/windsurf/mcp_config.json)", Path: filepath.Join(homeDir, ".codeium", "windsurf", "mcp_config.json")},
+		)
+	}
+	switch runtime.GOOS {
+	case "windows":
+		appData := os.Getenv("APPDATA")
+		if appData != "" {
+			candidates = append(candidates,
+				CandidateLocation{Name: "Windsurf Config", Path: filepath.Join(appData, "Codeium", "Windsurf", "mcp_config.json")},
+				CandidateLocation{Name: "Cursor Settings", Path: filepath.Join(appData, "Cursor", "mcp.json")},
+			)
+		}
+	case "darwin":
+		if homeDir != "" {
+			candidates = append(candidates,
+				CandidateLocation{Name: "Windsurf Config", Path: filepath.Join(homeDir, "Library", "Application Support", "Codeium", "Windsurf", "mcp_config.json")},
+			)
+		}
+	case "linux":
+		xdgConfig := os.Getenv("XDG_CONFIG_HOME")
+		if xdgConfig == "" && homeDir != "" {
+			xdgConfig = filepath.Join(homeDir, ".config")
+		}
+		if xdgConfig != "" {
+			candidates = append(candidates,
+				CandidateLocation{Name: "Windsurf Config", Path: filepath.Join(xdgConfig, "Codeium", "Windsurf", "mcp_config.json")},
+			)
+		}
+	}
+
+	// 5. Claude Desktop config
 	if claudePath, err := DefaultClaudeDesktopConfigPath(); err == nil && claudePath != "" {
 		candidates = append(candidates, CandidateLocation{Name: "Claude Desktop", Path: claudePath})
 	}
@@ -139,4 +172,39 @@ func LoadClaudeConfig(filePath string) (*ClaudeConfig, error) {
 	}
 
 	return &cfg, nil
+}
+
+// DiscoverAllServers searches all candidate configuration locations and returns all discovered MCP servers.
+func DiscoverAllServers() ([]DiscoveredServer, []CandidateLocation, error) {
+	candidates := GetCandidateConfigPaths()
+	var discovered []DiscoveredServer
+	var foundLocations []CandidateLocation
+	seen := make(map[string]bool)
+
+	for _, c := range candidates {
+		fi, err := os.Stat(c.Path)
+		if err != nil || fi.IsDir() {
+			continue
+		}
+		foundLocations = append(foundLocations, c)
+		cfg, err := LoadClaudeConfig(c.Path)
+		if err != nil {
+			continue
+		}
+		for name, srv := range cfg.MCPServers {
+			key := fmt.Sprintf("%s::%s", name, srv.Command)
+			if seen[key] {
+				continue
+			}
+			seen[key] = true
+			discovered = append(discovered, DiscoveredServer{
+				Name:       name,
+				Source:     c.Name,
+				ConfigPath: c.Path,
+				Config:     srv,
+			})
+		}
+	}
+
+	return discovered, candidates, nil
 }

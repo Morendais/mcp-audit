@@ -1,0 +1,32 @@
+{
+  "name": "mcp-hunter",
+  "version": "0.2.0",
+  "description": "Zero-config security auditor and dynamic fuzzer for Model Context Protocol (MCP) servers",
+  "bin": {
+    "mcp-hunter": "./bin/mcp-hunter.js"
+  },
+  "scripts": {
+    "postinstall": "node ./bin/mcp-hunter.js --check-install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcphunter/mcp-hunter.git"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "security",
+    "claude",
+    "cursor",
+    "windsurf",
+    "audit",
+    "fuzzer",
+    "sarif",
+    "dast"
+  ],
+  "author": "mcp-hunter team",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
